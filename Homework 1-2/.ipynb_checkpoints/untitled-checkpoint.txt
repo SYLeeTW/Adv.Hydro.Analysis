@@ -1,0 +1,77 @@
+plt.title('Histogram of July Daily Max. Temp.', fontsize=18)
+plt.hist(DMax1, bins=15, alpha=0.75, label='1961 - 1980')
+plt.hist(DMax2, bins=15, alpha=0.75, label='1990 - 2009')
+plt.xlabel('Temp.', fontsize=16)
+plt.ylabel('Frequency', fontsize=16)
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.legend(fontsize=12)
+plt.tight_layout()
+plt.savefig('Figure3-1.png', dpi=240)
+
+plt.title('Boxplot of July Daily Max. Temp.', fontsize=18)
+capprops = dict(linewidth=1.5)
+boxprops = dict(linewidth=1.5)
+medianprops = dict(linewidth=2)
+whiskerprops = dict(linewidth=1.5)
+plt.boxplot([DMax1, DMax2], labels=['1961-1980', '1990-2009'],
+            capprops=capprops, boxprops=boxprops, whiskerprops=whiskerprops,
+            medianprops=medianprops, vert=False)
+plt.violinplot([DMax1, DMax2], vert=False, showextrema=False)
+plt.vlines(np.median(DMax1), 0.5, 2.5, ls='dotted', lw=1.25, color='black', zorder=0)
+plt.vlines(np.median(DMax2), 0.5, 2.5, ls='dotted', lw=1.25, color='black', zorder=0)
+plt.xlabel('Temp.', fontsize=16)
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=14)
+plt.tight_layout()
+plt.savefig('Figure3-2.png', dpi=240)
+
+x = np.arange(-3, 3, 0.01)
+plt.figure(figsize=(7,5))
+plt.title('8 Equiprobable Intervals of \n Standard Normal Distribution', fontsize=18)
+plt.plot(x, ss.norm.cdf(x), label='CDF')
+plt.vlines(equiprob, 0, ss.norm.cdf(equiprob), ls='dotted', lw=1.25, color='black')
+plt.hlines(ss.norm.cdf(equiprob), -3, equiprob, ls='dotted', lw=1.25, color='black')
+plt.xlabel('X', fontsize=16)
+plt.ylabel('Density', fontsize=16)
+plt.xlim(-3, 3)
+plt.ylim( 0, 1)
+plt.xticks(np.round(equiprob[1:-1],2), fontsize=12, rotation=45)
+plt.yticks(np.arange(0,1.125,0.125), fontsize=12)
+plt.legend(fontsize=12)
+plt.tight_layout()
+plt.savefig('Figure4-1.png', dpi=240)
+
+import matplotlib.pyplot as plt
+plt.figure(figsize=(9,6))
+plt.title('Type II Error vs. Simple Size', fontsize=18)
+plt.plot(np.linspace(2,n,n-1), B, zorder=0)
+plt.scatter(np.linspace(2,n,n-1), B, s=20, c='C1', marker='^', zorder=2)
+plt.hlines(0.05, 1.5, 36.5, ls='dotted', lw=2, color='black', zorder=1, label=r'$\beta_{criti}=0.05$')
+
+for i in range(n-1):
+    x = np.linspace(2,n,n-1)[i]
+    y = B[i]
+    label = "{:.3f}".format(y)
+    if i%2==0:
+        plt.annotate(label, # this is the text
+                     (x,y), # these are the coordinates to position the label
+                     textcoords="offset points", # how to position the text
+                     xytext=(15,5), # distance from text to points (x,y)
+                     ha='center', color='red') # horizontal alignment can be left, right or center
+    else:
+        plt.annotate(label, # this is the text
+                     (x,y), # these are the coordinates to position the label
+                     textcoords="offset points", # how to position the text
+                     xytext=(-15,-15), # distance from text to points (x,y)
+                     ha='center', color='red') # horizontal alignment can be left, right or center
+
+plt.xlabel('Simple Size (×8)', fontsize=16)
+plt.ylabel(r'Type II Error, $\beta$', fontsize=16)
+plt.xticks(np.arange(2,n+2,2), fontsize=12)
+plt.yticks(fontsize=12)
+plt.xlim(1, n+1)
+plt.grid(alpha=0.25)
+plt.legend(fontsize=16)
+plt.tight_layout()
+plt.savefig('Figure4-2.png', dpi=240)

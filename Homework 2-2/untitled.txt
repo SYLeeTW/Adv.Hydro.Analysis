@@ -1,0 +1,27 @@
+import matplotlib.pyplot as plt
+plt.rcParams['mathtext.fontset'] = 'cm'
+plt.rcParams['font.sans-serif'] = ['Microsoft JhengHei']
+plt.rcParams['axes.unicode_minus'] = False
+plt.rcParams['axes.titlesize'] = 18
+plt.rcParams['axes.labelsize'] = 16
+plt.rcParams['xtick.labelsize'] = 12
+plt.rcParams['ytick.labelsize'] = 12
+plt.rcParams['legend.fontsize'] = 14
+
+plt.figure(figsize=(9,6))
+plt.title('Daily Mean Temp.')
+Temp.mean().plot(kind='bar', xlabel='站名', ylabel='Temp.')
+plt.grid(alpha=0.5, zorder=0)
+plt.savefig('Figure2-A-1.png', dpi=360)
+
+plt.title('Mean Temp. Anomaly of 19 stations')
+tmpMean.plot(figsize=(12,6))
+plt.ylabel('Temp. Anomaly')
+plt.savefig('Figure2-A-2.png', dpi=360)
+
+plt.figure(figsize=(8,6))
+plt.title('Mean Temp. Anomaly')
+plt.scatter(JulDay, tmpMean)
+plt.xlabel('Julian Day')
+plt.ylabel('Temp. Anomaly')
+plt.savefig('Figure2-A-3.png', dpi=360)
