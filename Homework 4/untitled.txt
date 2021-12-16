@@ -1,0 +1,6 @@
+plt.figure(figsize=(8,4))
+plt.title(r'Mean Temp. Anomaly $\tilde{T}(t)$')
+MeanTA.plot()
+plt.xlabel('Year')
+plt.savefig('FigureA-1-1')
+
